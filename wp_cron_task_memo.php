@@ -28,14 +28,14 @@ class demoCron {
 
     public function activation() {
         // register cron task
-        wp_mail( 'crontask@demo.com', 'Activation du cron', 'Activation du cron' );
+        wp_mail( $this->adminEmail, 'Activation du cron', 'Activation du cron' );
         if (!wp_next_scheduled('my_cron_task')) {
             wp_schedule_event( time(), 'hourly', 'my_cron_task' );
         }
     }
     public function desactivation() {
         // de-register cron task
-        wp_mail( 'crontask@demo.com', 'Déctivation du cron', 'Déctivation du cron' );
+        wp_mail( $this->adminemail, 'Déctivation du cron', 'Déctivation du cron' );
         if (wp_next_scheduled('mp_cron_import')) {
             $timeStamp = wp_next_scheduled('my_cron_task');
             wp_unschedule_event( $timeStamp, 'my_cron_task');
@@ -45,7 +45,7 @@ class demoCron {
     public function cronTask() {
 
         // Do something
-        wp_mail( 'crontask@demo.com', 'Passage du cron', 'Passage du cron' );
+        wp_mail( $this->adminEmail, 'Passage du cron', 'Passage du cron' );
     }
 }
 
