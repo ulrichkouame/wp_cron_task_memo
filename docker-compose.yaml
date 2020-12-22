@@ -13,6 +13,7 @@ services:
             - WORDPRESS_DEBUG=1
         depends_on:
             - db
+            - mailhog
         volumes:
             - ./:/var/www/html/wp-content/plugins/wp_cron_tash_memo
     db:
@@ -24,3 +25,9 @@ services:
             MYSQL_USER: 'root'
         volumes:
             - .docker/data/mysqlSf:/var/lib/mysql
+
+    mailhog:
+        image: mailhog/mailhog:v1.0.0
+        ports:
+            - "1025:1025"
+            - "8025:8025"
