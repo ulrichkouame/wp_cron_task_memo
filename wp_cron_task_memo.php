@@ -36,7 +36,7 @@ class demoCron {
     public function desactivation() {
         // de-register cron task
         wp_mail( $this->adminemail, 'Déctivation du cron', 'Déctivation du cron' );
-        if (wp_next_scheduled('mp_cron_import')) {
+        if (wp_next_scheduled('my_cron_task')) {
             $timeStamp = wp_next_scheduled('my_cron_task');
             wp_unschedule_event( $timeStamp, 'my_cron_task');
         }
